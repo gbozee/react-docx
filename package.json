@@ -1,0 +1,37 @@
+{
+  "name": "doc-resume",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "umd:main": "dist/doc-resume.umd.production.js",
+  "module": "dist/doc-resume.es.production.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "start": "tsdx watch -i src/application.ts",
+    "build": "tsdx build",
+    "prepare": "npm run build",
+    "test": "tsdx test --watchAll"
+  },
+  "devDependencies": {
+    "@gbozee/tsdx": "^0.5.5",
+    "@types/jest": "^24.0.12",
+    "@types/ramda": "^0.26.8",
+    "@types/react-reconciler": "^0.18.0",
+    "ts-node": "^8.1.0",
+    "ttypescript": "^1.5.6",
+    "typescript": "^3.4.5",
+    "typescript-transform-paths": "^1.1.0"
+  },
+  "dependencies": {
+    "@gbozee/docx": "^5.0.5-rc1",
+    "babel-runtime": "^6.26.0",
+    "media-engine": "^1.0.3",
+    "page-wrapping": "^1.1.0",
+    "ramda": "^0.26.1",
+    "react": "^16.8.6",
+    "react-reconciler": "^0.20.4",
+    "yoga-layout-prebuilt": "^1.9.3"
+  }
+}

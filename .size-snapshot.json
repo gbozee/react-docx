@@ -1,0 +1,104 @@
+{
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/docResume.cjs.development.js": {
+    "bundled": 12251,
+    "minified": 7370,
+    "gzipped": 2889
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/docResume.cjs.production.js": {
+    "bundled": 12207,
+    "minified": 7348,
+    "gzipped": 2878
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/docResume.umd.development.js": {
+    "bundled": 13208,
+    "minified": 7187,
+    "gzipped": 2908
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/docResume.umd.production.js": {
+    "bundled": 13158,
+    "minified": 7165,
+    "gzipped": 2895
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/docResume.es.production.js": {
+    "bundled": 12156,
+    "minified": 7289,
+    "gzipped": 2881,
+    "treeshaked": {
+      "rollup": {
+        "code": 6706,
+        "import_statements": 250
+      },
+      "webpack": {
+        "code": 7915
+      }
+    }
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.cjs.development.js": {
+    "bundled": 11777,
+    "minified": 7271,
+    "gzipped": 2722
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.cjs.production.js": {
+    "bundled": 11818,
+    "minified": 7271,
+    "gzipped": 2722
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.umd.development.js": {
+    "bundled": 12636,
+    "minified": 7195,
+    "gzipped": 2778
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.umd.production.js": {
+    "bundled": 12636,
+    "minified": 7195,
+    "gzipped": 2778
+  },
+  "C:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.es.production.js": {
+    "bundled": 11707,
+    "minified": 7196,
+    "gzipped": 2730,
+    "treeshaked": {
+      "rollup": {
+        "code": 6855,
+        "import_statements": 151
+      },
+      "webpack": {
+        "code": 8021
+      }
+    }
+  },
+  "c:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.cjs.development.js": {
+    "bundled": 12977,
+    "minified": 7353,
+    "gzipped": 2696
+  },
+  "c:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.cjs.production.js": {
+    "bundled": 12977,
+    "minified": 7353,
+    "gzipped": 2696
+  },
+  "c:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.es.production.js": {
+    "bundled": 12865,
+    "minified": 7237,
+    "gzipped": 2699,
+    "treeshaked": {
+      "rollup": {
+        "code": 6852,
+        "import_statements": 135
+      },
+      "webpack": {
+        "code": 8087
+      }
+    }
+  },
+  "c:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.umd.development.js": {
+    "bundled": 13896,
+    "minified": 7261,
+    "gzipped": 2752
+  },
+  "c:\\Users\\gboze\\Documents\\projects\\opensource\\doc-resume\\dist/doc-resume.umd.production.js": {
+    "bundled": 13896,
+    "minified": 7261,
+    "gzipped": 2752
+  }
+}
