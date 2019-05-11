@@ -3,8 +3,6 @@ import ReactFiberReconciler from "react-reconciler";
 import { createInstance } from "./elements";
 import propsEqual from "./utils/propsEqual";
 
-
-
 const emptyObject = {};
 const shouldReplaceLink = (
   type: string,
@@ -62,16 +60,18 @@ let hostConfig: HostConfig = {
     props: Props,
     _rootContainerInstance: Container,
     _hostContext: HostContext,
-    internalInstanceHandle: ReactFiberReconciler.OpaqueHandle
+    _internalInstanceHandle: ReactFiberReconciler.OpaqueHandle
   ) {
     const instanceType = shouldReplaceLink(type, props) ? "TEXT" : type;
     return createInstance(
       { type: instanceType, props },
-      internalInstanceHandle
+      _rootContainerInstance
     );
   },
   supportsMutation: true,
   appendInitialChild(parentInstance: Instance, child: Instance | TextInstance) {
+    // console.log(parentInstance)
+    // console.log(child)
     parentInstance.appendChild(child);
   },
   finalizeInitialChildren(
@@ -81,7 +81,6 @@ let hostConfig: HostConfig = {
     _rootContainerInstance: Container,
     _hostContext: HostContext
   ) {
-    
     return false;
   },
   prepareUpdate(
@@ -102,14 +101,14 @@ let hostConfig: HostConfig = {
   },
   createTextInstance(
     text: string,
-    rootContainerInstance: Container,
+    _rootContainerInstance: Container,
     _hostContext: HostContext,
     _internalInstanceHandle: ReactFiberReconciler.OpaqueHandle
   ) {
-    return createInstance(
-      { type: "TEXT_INSTANCE", props: text },
-      rootContainerInstance
-    );
+    let result = text as any
+    return result
+    // console.log(text)
+    // return createInstance({ type: "TEXT", props: text }, _rootContainerInstance);
   },
 
   scheduleDeferredCallback(

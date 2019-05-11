@@ -1,5 +1,5 @@
 import Base from "./Base";
-import warning from "../utils/warning";
+// import warning from "../utils/warning";
 import { Fragment } from "react";
 import { createInstance } from ".";
 import TextInstance from './Text';
@@ -37,24 +37,24 @@ class Page extends Base {
   //     return this._size;
   //   }
 
-  resetMargins() {
-    if (
-      !!this.marginTop ||
-      !!this.marginBottom ||
-      !!this.marginLeft ||
-      !!this.marginRight
-    ) {
-      warning(
-        false,
-        "Margin values are not allowed on Page element. Use padding instead."
-      );
+  // resetMargins() {
+  //   if (
+  //     !!this.marginTop ||
+  //     !!this.marginBottom ||
+  //     !!this.marginLeft ||
+  //     !!this.marginRight
+  //   ) {
+  //     warning(
+  //       false,
+  //       "Margin values are not allowed on Page element. Use padding instead."
+  //     );
 
-      this.marginTop = 0;
-      this.marginBottom = 0;
-      this.marginLeft = 0;
-      this.marginRight = 0;
-    }
-  }
+  //     this.marginTop = 0;
+  //     this.marginBottom = 0;
+  //     this.marginLeft = 0;
+  //     this.marginRight = 0;
+  //   }
+  // }
 
   //   applyProps() {
   //     super.applyProps();
@@ -150,41 +150,41 @@ class Page extends Base {
 //     this.calculateLayout();
 //   }
 
-  clone() {
-    const clone = super.clone();
-    // clone._size = this.size;
-    return clone;
-  }
+  // clone() {
+  //   const clone = super.clone();
+  //   // clone._size = this.size;
+  //   return clone;
+  // }
 
   update(newProps: any) {
     super.update(newProps);
     this._size = null;
   }
 
-  async render() {
-    const { instance } = this.root;
+  // async render() {
+  //   const { instance } = this.root;
 
-    // this.height = this.size.height;
-    this.calculateLayout();
+  //   // this.height = this.size.height;
+  //   this.calculateLayout();
 
-    instance.addPage({
-      //   size: [this.size.width, this.size.height],
-      margin: 0
-    });
+  //   instance.addPage({
+  //     //   size: [this.size.width, this.size.height],
+  //     margin: 0
+  //   });
 
-    if (this.style.backgroundColor) {
-      instance
-        .fillColor(this.style.backgroundColor)
-        // .rect(0, 0, this.size.width, this.size.height)
-        .fill();
-    }
+  //   if (this.style.backgroundColor) {
+  //     instance
+  //       .fillColor(this.style.backgroundColor)
+  //       // .rect(0, 0, this.size.width, this.size.height)
+  //       .fill();
+  //   }
 
-    await this.renderChildren();
+  //   await this.renderChildren();
 
-    // if (this.props.debug) this.debug();
+  //   // if (this.props.debug) this.debug();
 
-    // this.renderRuler();
-  }
+  //   // this.renderRuler();
+  // }
 }
 // applyMixins(Page, [Ruler]);
 export default Page;

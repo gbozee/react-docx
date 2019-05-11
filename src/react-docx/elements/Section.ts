@@ -1,9 +1,10 @@
 // import { instantiate } from "../utils/constructor";
 import Base from "./Base";
 // import getMethods from "../utils/getMethods";
-import { Paragraph, TextRun } from "@gbozee/docx";
+import { Paragraph } from "@gbozee/docx";
 
-class TextInstance extends Base {
+class Section extends Base {
+  paragraph: Paragraph;
   // value: string;
   // root: any;
   // parent: any;
@@ -13,21 +14,11 @@ class TextInstance extends Base {
     // this.root = root;
     // this.value = value;
     this.parent = null;
-    this.props = props;
+    this.paragraph = new Paragraph();
   }
 
   get name() {
-    return "Text";
-  }
-  appendChild(child: any) {
-    this.children.push(child);
-    // if (child) {
-    //   child.parent = this;
-    //   this.children.push(child);
-    //   this.computed = false;
-    //   // this.attributedString = null;
-    //   // this.markDirty();
-    // }
+    return "Section";
   }
   // getLayoutData() {
   //   return this.value;
@@ -52,20 +43,12 @@ class TextInstance extends Base {
 
   async render() {
     // console.log(Paragraph)
-    let paragraph = new Paragraph();
-    if (this.parent.name !== "Document") {
-      paragraph = this.parent.paragraph;
-    }
     for (let child of this.children) {
-      paragraph.addRun(new TextRun(child));
       // console.log(child.name);
-      // await child.render();
+      await child.render();
     }
-    if (this.parent.name === "Document") {
-      console.log(this.parent.name);
-      this.parent.root.instance.addParagraph(paragraph);
-    }
+    this.root.instance.addParagraph(this.paragraph);
   }
 }
 
-export default TextInstance;
+export default Section;

@@ -1,14 +1,16 @@
 import { Document } from "@gbozee/docx";
 
+
 class Root {
   document: any;
   isDirty: boolean;
-  instance: any;
+  instance: Document;
   constructor() {
     this.isDirty = false;
+    this.instance = new Document();
     this.document = null;
-    this.instance = null;
   }
+
   get name() {
     return "Root";
   }
@@ -24,9 +26,11 @@ class Root {
     this.isDirty = true;
   }
   async render() {
-    this.instance = new Document();
     await this.document.render();
     this.isDirty = false;
+  }
+  async renderChildren(){
+
   }
 }
 

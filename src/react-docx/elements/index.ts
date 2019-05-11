@@ -6,6 +6,7 @@ import Text from "./Text";
 // import Note from './Note';
 // import Image from './Image';
 import Document from "./Document";
+import Section from "./Section";
 // import Canvas from './Canvas';
 // import TextInstance from './TextInstance';
 
@@ -13,6 +14,7 @@ const constructors: { [key: string]: any } = {
   ROOT: Root,
   PAGE: Page,
   TEXT: Text,
+  SECTION: Section,
   //   LINK: Link,
   //   VIEW: View,
   //   NOTE: Note,
@@ -21,6 +23,7 @@ const constructors: { [key: string]: any } = {
   DOCUMENT: Document
   //   TEXT_INSTANCE: TextInstance,
 };
+
 
 function createInstance(element: { type: any; props?: any }, root?: any) {
   const { type, props = {} } = element;

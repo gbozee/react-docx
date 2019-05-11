@@ -395,3 +395,4 @@ const packer = new Packer();
 packer.toBuffer(doc).then(buffer => {
   fs.writeFileSync("My Document.docx", buffer);
 });
+

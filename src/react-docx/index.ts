@@ -7,11 +7,12 @@ import { version } from "../../package.json";
 const View = "VIEW";
 const TextString = "TEXT";
 const Link = "LINK";
-const PageString = "PAGE";
+// const PageString = "PAGE";
 const Note = "NOTE";
 const Image = "IMAGE";
 const DocumentString = "DOCUMENT";
 const Canvas = "CANVAS";
+const SectionString = "SECTION";
 
 const document = (input?: any) => {
   const container = createInstance({ type: "ROOT" });
@@ -20,9 +21,13 @@ const document = (input?: any) => {
   if (input) updateContainer(input);
 
   function callOnRender(params = {}) {
+    // console.log(container.document.props)
     if (container.document.props.onRender) {
       const layoutData = container.document.getLayoutData();
-      container.document.props.onRender({ ...params, layoutData });
+      container.document.props.onRender(
+        { ...params, layoutData },
+        container.document
+      );
     }
   }
 
@@ -41,6 +46,8 @@ const document = (input?: any) => {
         .toBlob(container.instance)
         .then(blob => {
           // saveAs from FileSaver will download the file
+          callOnRender({ blob, instance: container.instance });
+
           resolve(blob);
         })
         .catch(reject);
@@ -68,7 +75,7 @@ const document = (input?: any) => {
       packer
         .toBase64String(container.instance)
         .then(result => {
-          callOnRender({ string: result });
+          callOnRender({ string: result, instance: container.instance });
           resolve(result);
         })
         .catch(reject);
@@ -85,10 +92,11 @@ const document = (input?: any) => {
 const Document = ({ children, ...props }: any) => {
   return React.createElement(DocumentString, props, children);
 };
-const Page = ({ children, ...props }: any) => {
-  return React.createElement(PageString, props, children);
+const Section = ({ children, ...props }: any) => {
+  return React.createElement(SectionString, props, children);
 };
 const Text = ({ children, ...props }: any) => {
+  // console.log(props)
   return React.createElement(TextString, props, children);
 };
 export {
@@ -97,7 +105,7 @@ export {
   View,
   Text,
   Link,
-  Page,
+  Section,
   //   Font,
   Note,
   Image,
