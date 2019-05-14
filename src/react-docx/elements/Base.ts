@@ -123,7 +123,11 @@ class Base extends Node {
     // const inheritedStyles = this.parent
     //   ? pick(inheritedProperties, this.parent.style)
     //   : {};
-    return composeStyle(this.props.style, node);
+    let style = this.props.style || {};
+    if (this.props.className){
+      style.style = this.props.className
+    }
+    return composeStyle(style, node);
     return {};
     // return { ...inheritedStyles, ...ownStyles };
   }

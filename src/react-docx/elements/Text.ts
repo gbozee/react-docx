@@ -71,7 +71,7 @@ class TextInstance extends Base {
       // console.log(child.name);
       // await child.render();
     }
-    console.log(nodes);
+    // console.log(nodes);
     for (let node of nodes) {
       paragraph.addRun(node);
     }
