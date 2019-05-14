@@ -26,7 +26,7 @@ class TextInstance extends Base {
     //   this.children.push(child);
     //   this.computed = false;
     //   // this.attributedString = null;
-    //   // this.markDirty();
+    this.root.markDirty();
     // }
   }
   // getLayoutData() {
@@ -51,15 +51,29 @@ class TextInstance extends Base {
   // }
 
   async render() {
-    // console.log(Paragraph)
     let paragraph = new Paragraph();
     if (this.parent.name !== "Document") {
       paragraph = this.parent.paragraph;
     }
+    let nodes = [];
     for (let child of this.children) {
-      paragraph.addRun(new TextRun(child));
+      if (typeof child === "string") {
+        let oldChild = new TextRun(child);
+        oldChild = this.resolveStyles(oldChild);
+        nodes.push(oldChild);
+      } else {
+        if (child.name === "br") {
+          if (nodes.length > 0) {
+            nodes[nodes.length - 1].break();
+          }
+        }
+      }
       // console.log(child.name);
       // await child.render();
+    }
+    console.log(nodes);
+    for (let node of nodes) {
+      paragraph.addRun(node);
     }
     if (this.parent.name === "Document") {
       console.log(this.parent.name);

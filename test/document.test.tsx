@@ -1,7 +1,22 @@
+import fs from "fs";
 import React from "react";
-import { document, Document, Text, Section } from "@gbozee/react-docx";
-import { render } from "@gbozee/react-docx";
-
+// import { mount, configure } from "enzyme";
+// import Adapter from "enzyme-adapter-react-16";
+// import mock from "mock-fs";
+// import { document, Document, Text, Section, render } from "@gbozee/react-docx";
+import {
+  document,
+  Document,
+  Text,
+  Section,
+  render
+} from "../src/react-docx/node";
+// import {
+//   DOCXDownloadLink,
+//   DOCXViewer
+//   // BlobProvider
+// } from "../src/react-docx/dom";
+// configure({ adapter: new Adapter() });
 describe("document", () => {
   test("Should create empty pdf instance", () => {
     const instance = document();
@@ -89,22 +104,53 @@ describe("document", () => {
 
     document(doc).toString();
   });
-  test("rendering of the component", done => {
+  describe("Rendering of the component", () => {
+    // mock({
+    //   testDir: {}
+    // });
+    // afterAll(() => {
+    //   mock.restore();
+    // });
+    global.URL.createObjectURL = jest.fn();
+    global.URL.revokeObjectURL = jest.fn();
     const doc = (
       <Document>
         <Section>
-          <Text>Hey</Text>
+          <Text>Hello world</Text>
         </Section>
       </Document>
     );
-    render(doc, "sample.docx", undefined, (_instance: any) => {
-      expect(_instance).toMatchSnapshot()
-    })
-      .then((_data: any) => {
-        done();
-      })
-      .catch((e: any) => {
-        console.log(e);
-      });
+    test("in Node", async () => {
+      await render(doc, "example.docx");
+      expect(fs.existsSync("example.docx")).toBeTruthy();
+    });
+    // test("in the browser using a link", async () => {
+    //   const wrapper = mount(
+    //     <DOCXDownloadLink document={doc}>Download</DOCXDownloadLink>
+    //   );
+    //   expect(wrapper.find("a")).toHaveLength(1);
+    //   expect(wrapper.text()).toBe("Download");
+    //   const wrapper2 = mount(
+    //     <DOCXViewer name="DOCXViewer-test-name">{doc}</DOCXViewer>
+    //   );
+    //   expect(wrapper2.find("iframe").prop("name")).toEqual(
+    //     "DOCXViewer-test-name"
+    //   );
+    // });
+    // test("BlobProvider returns document url", done => {
+    //   let updates = 2;
+    //   const instance = (
+    //     <BlobProvider document={doc}>
+    //       {(props: any) => {
+    //         if (updates === 2) expect(props.url).toBeFalsy();
+    //         if (updates === 1) expect(props.url).toBeTruthy();
+    //         done();
+    //         return updates--;
+    //       }}
+    //     </BlobProvider>
+    //   );
+    //   mount(instance);
+    //   // expect.assertions(2);
+    // });
   });
 });

@@ -5,6 +5,7 @@ import Text from "./Text";
 // import Link from './Link';
 // import Note from './Note';
 // import Image from './Image';
+import LineBreak from "./LineBreak";
 import Document from "./Document";
 import Section from "./Section";
 // import Canvas from './Canvas';
@@ -15,6 +16,7 @@ const constructors: { [key: string]: any } = {
   PAGE: Page,
   TEXT: Text,
   SECTION: Section,
+  br: LineBreak,
   //   LINK: Link,
   //   VIEW: View,
   //   NOTE: Note,

@@ -1,17 +1,37 @@
 import * as fs from "fs";
-import { document } from "./index";
-export const renderToStream = function(element: any) {
-  return document(element).toBuffer();
+import {
+  document
+  // version,
+  // DocRenderer,
+  // View,
+  // Text,
+  // Link,
+  // Section,
+  // //   Font,
+  // Note,
+  // Image,
+  // Document,
+  // Canvas,
+  // // StyleSheet,
+  // createInstance
+} from "./index";
+
+export const renderToStream = function(
+  element: any,
+  callbackWithInstance: any
+) {
+  return document(element).toBuffer(callbackWithInstance);
 };
 
 export const renderToFile = async function(
   element: any,
   filePath: string | number | Buffer | import("url").URL,
-  callback: (arg0: {}, arg1: any) => void
+  callback?: any,
+  containerCallback?: any
 ) {
   try {
-    const output = await renderToStream(element);
-    fs.writeFileSync(filePath, null);
+    const output = await renderToStream(element, containerCallback);
+    fs.writeFileSync(filePath, output);
     if (callback) {
       callback(output, filePath);
     }
@@ -41,4 +61,19 @@ export const BlobProvider = () => {
 
 export const render = renderToFile;
 
-export * from "./index";
+export {
+  version,
+  DocRenderer,
+  View,
+  Text,
+  Link,
+  Section,
+  //   Font,
+  Note,
+  Image,
+  Document,
+  Canvas,
+  // StyleSheet,
+  createInstance,
+  document
+} from "./index";

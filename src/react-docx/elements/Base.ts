@@ -6,6 +6,7 @@ import warning from "../utils/warning";
 // import matchPercent from "../utils/matchPercent";
 // import isFunction from "../utils/isFunction";
 import deepMerge from "../utils/deepMerge";
+import composeStyle from "../utils/composeStyle";
 import Root from "./Root";
 import getMethods from "../utils/getMethods";
 // import getMethods from "../utils/getMethods";
@@ -76,7 +77,7 @@ class Base extends Node {
   appendChild(child: any) {
     super.appendChild(child);
     // console.log(this.root)
-    // this.root.markDirty();
+    this.root.markDirty();
   }
 
   // appendChildBefore(child: any, beforeChild: any) {
@@ -99,7 +100,7 @@ class Base extends Node {
   }
 
   applyProps() {
-    this.style = this.resolveStyles();
+    // this.style = this.resolveStyles();
 
     // toPairsIn(this.style).map(([attribute, value]) => {
     //   this.applyStyle(attribute, value);
@@ -110,7 +111,7 @@ class Base extends Node {
     });
   }
 
-  resolveStyles() {
+  resolveStyles(node: any) {
     // const { size, orientation } = this.page;
 
     // const ownStyles = StyleSheet.resolve(this.props.style, {
@@ -122,7 +123,8 @@ class Base extends Node {
     // const inheritedStyles = this.parent
     //   ? pick(inheritedProperties, this.parent.style)
     //   : {};
-    return {}
+    return composeStyle(this.props.style, node);
+    return {};
     // return { ...inheritedStyles, ...ownStyles };
   }
   // applyStyle(attribute: string, value: {} | undefined) {
@@ -233,9 +235,9 @@ class Base extends Node {
   // }
 
   async render() {
-    console.log(this.root)
+    console.log(this.root);
     for (let i = 0; i < this.children.length; i++) {
-      getMethods(this.children[i])
+      getMethods(this.children[i]);
       await this.children[i].render();
       // await this.children[i].render();
     }

@@ -16,9 +16,16 @@
     "test": "tsdx test --watchAll"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.9.1",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.12",
+    "@types/mock-fs": "^3.6.30",
     "@types/ramda": "^0.26.8",
     "@types/react-reconciler": "^0.18.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.13.0",
+    "mock-fs": "^4.9.0",
+    "react-dom": "^16.8.6",
     "ts-node": "^8.1.0",
     "tsdx": "0.5.9",
     "ttypescript": "^1.5.6",

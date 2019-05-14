@@ -1,6 +1,7 @@
 import React from "react";
 import warning from "./utils/warning";
 import { document } from "./index";
+import getMethods from "./utils/getMethods";
 
 const flatStyles = (stylesArray: {
   reduce: (arg0: (acc: any, style: any) => any, arg1: {}) => void;
@@ -37,19 +38,19 @@ class InternalBlobProvider extends React.PureComponent<
 
   componentDidUpdate() {
     this.renderDocument();
-
     if (this.instance.isDirty() && !this.state.error) {
       this.onDocumentUpdate();
     }
   }
 
   renderDocument() {
+    debugger;
     this.instance.updateContainer(this.props.document);
   }
 
   onDocumentUpdate() {
     const oldBlobUrl = this.state.url;
-
+    console.log(getMethods(this.instance))
     this.instance
       .toBlob()
       .then((blob: any) => {
@@ -75,7 +76,6 @@ export const BlobProvider = ({ doc, children }: any) => {
     warning(false, "You should pass a valid document to BlobProvider");
     return null;
   }
-
   return <InternalBlobProvider document={doc}>{children}</InternalBlobProvider>;
 };
 
@@ -141,7 +141,7 @@ export {
   View,
   Text,
   Link,
-  Page,
+  // Page,
   // Font,
   Note,
   Image,

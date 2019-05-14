@@ -22,6 +22,7 @@ const document = (input?: any) => {
 
   function callOnRender(params = {}) {
     // console.log(container.document.props)
+
     if (container.document.props.onRender) {
       const layoutData = container.document.getLayoutData();
       container.document.props.onRender(
@@ -40,7 +41,6 @@ const document = (input?: any) => {
   async function toBlob() {
     const packer = new Packer();
     await container.render();
-
     return new Promise((resolve, reject) => {
       packer
         .toBlob(container.instance)
@@ -53,7 +53,7 @@ const document = (input?: any) => {
         .catch(reject);
     });
   }
-  async function toBuffer() {
+  async function toBuffer(callback?: any) {
     callOnRender();
     const packer = new Packer();
 
@@ -62,6 +62,9 @@ const document = (input?: any) => {
       packer
         .toBuffer(container.instance)
         .then(buffer => {
+          if (callback) {
+            callback(container.instance);
+          }
           resolve(buffer);
         })
         .catch(reject);
@@ -86,7 +89,8 @@ const document = (input?: any) => {
     updateContainer,
     toBuffer,
     toBlob,
-    toString
+    toString,
+    container: container.instance
   };
 };
 const Document = ({ children, ...props }: any) => {
