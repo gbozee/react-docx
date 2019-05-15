@@ -1,80 +1,8 @@
 import React from "react";
-import { document, Document, Text, Section } from "../src/react-docx/node";
+import { Document, Text, Section } from "../src/react-docx/node";
+import { assertText, assertContainStyle, assertTextWithBreak, assertTextIn, assertValueForNodeWithStyle, renderToString } from "./utils";
 
-function assertText(text: any, container: any) {
-  expect(getTextInstance(container).root[1].root[1]).toContain(text);
-}
-let options: { [key: string]: string } = {
-  bold: "w:b",
-  italics: "w:i",
-  allCaps: "w:caps",
-  smallCaps: "w:smallCaps",
-  superScript: "superscript",
-  subScript: "subscript",
-  underline: "w:u",
-  strike: "w:strike",
-  doubleStrike: "w:dstrike",
-  break: "w:br",
-  color: "w:color",
-  size: "w:sz",
-  font: "w:rFonts",
-  style: "w:rStyle"
-};
-function assertTextWithBreak(_text: string, container: any, _styleKey: string) {
-  let textNodes = getParagraphChildren(container)
-    .root.filter((x: any) => x.rootKey === "w:r")
-    .filter((_x: any) => {
-      let rootKey = _x.root.map((o: any) => o.rootKey);
-      return rootKey.includes(options[_styleKey]);
-    });
-  expect(textNodes.length).toBeGreaterThan(0);
-}
-function allStyleKeys(arr: Array<any>, subKey?: any) {
-  return arr
-    .map((x: any) => (subKey ? x.root[0].root.val : x.rootKey))
-    .filter((x: string) => !x.endsWith("Cs"));
-}
-function assertTextIn(text: any, container: any) {
-  let textNodes = getParagraphChildren(container)
-    .root.filter((x: any) => x.rootKey === "w:r")
-    .map((x: any) => x.root[x.root.length - 1].root[1].trim());
-  expect(textNodes).toContain(text);
-}
-function assertValueForNodeWithStyle(
-  style: string,
-  container: any,
-  _value: any
-) {
-  let styleKeys = getTextInstance(container).root[0];
-  let specificNode = styleKeys.root
-    .filter(
-      (x: any) => !x.rootKey.endsWith("Cs") && x.rootKey === options[style]
-    )
-    .map((x: any) => x.root[0].root);
-  expect(specificNode.length).toBeGreaterThan(0);
-  expect(specificNode[0]).toEqual(_value);
-}
-function assertContainStyle(
-  text: string,
-  container: any,
-  key?: any,
-  subKey?: any
-) {
-  let styleKeys = getTextInstance(container);
-  if (key) {
-    styleKeys = styleKeys[key];
-  } else {
-    styleKeys = styleKeys.root[0];
-  }
-  let result = allStyleKeys(styleKeys.root, subKey);
-  expect(result).toContain(options[text]);
-}
-function getTextInstance(container: any) {
-  return getParagraphChildren(container).root[1];
-}
-function getParagraphChildren(container: any) {
-  return container.document.body.root[0];
-}
+
 describe("Text", () => {
   test("sanity check with Document", async () => {
     const doc = (
@@ -195,12 +123,3 @@ describe("Text", () => {
     });
   });
 });
-async function renderToString(
-  element: any,
-  callback: { (container: any): void; (arg0: any): void }
-) {
-  let renderer = document(element);
-  await renderer.toString();
-  callback(renderer.container);
-  return renderer;
-}

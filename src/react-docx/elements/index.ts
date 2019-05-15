@@ -8,6 +8,8 @@ import Text from "./Text";
 import LineBreak from "./LineBreak";
 import Document from "./Document";
 import Section from "./Section";
+
+import HorizontalLine from "./HorizontalLine"
 // import Canvas from './Canvas';
 // import TextInstance from './TextInstance';
 
@@ -17,6 +19,7 @@ const constructors: { [key: string]: any } = {
   TEXT: Text,
   SECTION: Section,
   br: LineBreak,
+  hr: HorizontalLine,
   //   LINK: Link,
   //   VIEW: View,
   //   NOTE: Note,

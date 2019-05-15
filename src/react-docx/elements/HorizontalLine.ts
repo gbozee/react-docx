@@ -1,6 +1,6 @@
 import Base from "./Base";
 
-class LineBreak extends Base {
+class HorizontalLine extends Base {
   constructor(root: any, props: any) {
     super(root, props);
     this.parent = null;
@@ -8,7 +8,7 @@ class LineBreak extends Base {
   }
 
   get name() {
-    return "br";
+    return "hr";
   }
   appendChild(_child: any) {
     // this.children.push(child);
@@ -42,9 +42,9 @@ class LineBreak extends Base {
   // }
 
   async render() {
-    if (this.parent.name !== "Text") {
+    if (this.parent.name !== "Section") {
     }
   }
 }
 
-export default LineBreak;
+export default HorizontalLine;

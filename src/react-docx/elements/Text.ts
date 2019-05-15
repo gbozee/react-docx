@@ -59,6 +59,11 @@ class TextInstance extends Base {
     for (let child of this.children) {
       if (typeof child === "string") {
         let oldChild = new TextRun(child);
+        if (this.props.tab) {
+          for (let _o of Array(this.props.tab).fill(0)) {
+            oldChild.tab();
+          }
+        }
         oldChild = this.resolveStyles(oldChild);
         nodes.push(oldChild);
       } else {

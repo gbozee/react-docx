@@ -1,7 +1,8 @@
 // import { instantiate } from "../utils/constructor";
 import Base from "./Base";
 // import getMethods from "../utils/getMethods";
-import { Paragraph } from "@gbozee/docx";
+import { Paragraph, TextRun } from "@gbozee/docx";
+import warning from "../utils/warning";
 
 class Section extends Base {
   paragraph: Paragraph;
@@ -23,7 +24,18 @@ class Section extends Base {
   // getLayoutData() {
   //   return this.value;
   // }
-
+  appendChild(child: any) {
+    if (child) {
+      this.children.push(child);
+      // if (child) {
+      //   child.parent = this;
+      //   this.children.push(child);
+      //   this.computed = false;
+      //   // this.attributedString = null;
+      this.root.markDirty();
+    }
+    // }
+  }
   remove() {
     this.parent.removeChild(this);
   }
@@ -42,10 +54,41 @@ class Section extends Base {
   // }
 
   async render() {
+    let nodes = [];
+    let hasTabs = (this.props.style || {}).justifyContent;
+    if (hasTabs === "space-between") {
+      delete this.props.style["justifyContent"];
+      nodes = this.children.filter((x: any) => x.name === "Text");
+      warning(
+        nodes.length !== 2,
+        "Currently, space between only works with two Text nodes in a paragraph"
+      );
+      if (nodes.length === 2) {
+        this.paragraph.maxRightTabStop();
+      }
+    }
+    this.paragraph = this.resolveStyles(this.paragraph);
     // console.log(Paragraph)
     for (let child of this.children) {
       // console.log(child.name);
-      await child.render();
+      if (typeof child === "string") {
+        this.paragraph.addRun(new TextRun(child));
+      } else {
+        if (child.name === "hr") {
+          this.paragraph.thematicBreak();
+        } else {
+          child.parent = this;
+          if (nodes.length > 0) {
+            // when adding tabs to the last text item.
+            if (child === nodes[nodes.length - 1]) {
+              child.props = { ...child.props, tab: 1 };
+            }
+            await child.render();
+          } else {
+            await child.render();
+          }
+        }
+      }
     }
     this.root.instance.addParagraph(this.paragraph);
   }
