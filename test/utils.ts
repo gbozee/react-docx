@@ -25,7 +25,8 @@ let options: { [key: string]: string } = {
   border: "w:pBdr",
   bottom: "w:bottom",
   tab: "w:tab",
-  tabs: "w:tabs"
+  tabs: "w:tabs",
+  number: "w:numPr"
 };
 function assertTextWithBreak(_text: string, container: any, _styleKey: string) {
   let textNodes = getParagraphChildren(container)

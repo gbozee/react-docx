@@ -68,6 +68,7 @@ export {
   Text,
   Link,
   Section,
+  List,
   //   Font,
   Note,
   Image,

@@ -64,6 +64,7 @@ class TextInstance extends Base {
             oldChild.tab();
           }
         }
+        
         oldChild = this.resolveStyles(oldChild);
         nodes.push(oldChild);
       } else {

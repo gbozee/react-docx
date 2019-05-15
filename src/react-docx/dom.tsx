@@ -50,7 +50,7 @@ class InternalBlobProvider extends React.PureComponent<
 
   onDocumentUpdate() {
     const oldBlobUrl = this.state.url;
-    console.log(getMethods(this.instance))
+    console.log(getMethods(this.instance));
     this.instance
       .toBlob()
       .then((blob: any) => {
@@ -141,6 +141,7 @@ export {
   View,
   Text,
   Link,
+  List,
   // Page,
   // Font,
   Note,

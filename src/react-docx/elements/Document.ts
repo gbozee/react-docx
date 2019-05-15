@@ -1,19 +1,52 @@
 import wrapPages from "page-wrapping";
 // import getMethods from "../utils/getMethods";
 import Root from "./Root";
-import { Paragraph } from "@gbozee/docx";
+import {
+  Paragraph,
+  CustomFont,
+  ParagraphStyle,
+  CharacterStyle
+} from "@gbozee/docx";
+import composeStyle from "../utils/composeStyle";
+function createFontObject(fonts: any = {}) {
+  let result = [];
+  for (let font in fonts) {
+    let f = new CustomFont(font);
+    for (let o of fonts[font]) {
+      f.addStyle(o);
+    }
+    result.push(f);
+  }
+  return result;
+}
+function createStyleObject(styles: any = {}) {
+  let result = [];
+  for (let style in styles) {
+    let node = styles[style];
+    let type = node.kind || "paragraph";
+    let klass = type === "text" ? CharacterStyle : ParagraphStyle;
+    let f = new klass(style, node.name);
+    f = composeStyle(node.style, f);
+    result.push(f);
+  }
+  return result;
+}
 class Document {
   root: Root;
   style: {};
   props: any;
   children: any[];
   subpages: any[];
+  rootStyle: (CharacterStyle | ParagraphStyle)[];
+  fonts: CustomFont[];
   constructor(root: Root, props: any) {
     this.root = root;
     this.style = {};
     this.props = props;
     this.children = [];
     this.subpages = [];
+    this.rootStyle = createStyleObject(props.rootStyle);
+    this.fonts = createFontObject(props.fonts);
   }
   get name() {
     return "Document";
@@ -84,16 +117,16 @@ class Document {
       // console.log(Object.keys(this.root));
       // console.log(getMethods(this.root));
       // console.log(this.props)
-      
+
       if (typeof page === "string") {
         console.log(page);
         this.root.instance.addParagraph(new Paragraph(page));
         // If not a component, render it as a paragraph
         // await this.adder.addText(
-          //   page,
-          //   this.props.style ? applyStyles(this.props.style) : {}
-          // );
-        } else if (typeof page === "object") {
+        //   page,
+        //   this.props.style ? applyStyles(this.props.style) : {}
+        // );
+      } else if (typeof page === "object") {
         // Call render() for each component
         // console.log(page.children)
         await page.render(
@@ -110,6 +143,12 @@ class Document {
       this.applyProps();
       await this.loadAssets();
       await this.renderPages();
+      for (let style of this.rootStyle) {
+        this.root.instance.Styles.push(style);
+      }
+      for (let font of this.fonts) {
+        this.root.instance.Fonts.push(font);
+      }
       // this.root.instance.end();
       // Font.reset();
     } catch (e) {

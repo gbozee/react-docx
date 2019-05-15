@@ -8,6 +8,7 @@ import Text from "./Text";
 import LineBreak from "./LineBreak";
 import Document from "./Document";
 import Section from "./Section";
+import List from "./List"
 
 import HorizontalLine from "./HorizontalLine"
 // import Canvas from './Canvas';
@@ -20,6 +21,7 @@ const constructors: { [key: string]: any } = {
   SECTION: Section,
   br: LineBreak,
   hr: HorizontalLine,
+  List: List,
   //   LINK: Link,
   //   VIEW: View,
   //   NOTE: Note,

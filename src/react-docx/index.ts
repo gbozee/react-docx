@@ -7,7 +7,7 @@ import { version } from "../../package.json";
 const View = "VIEW";
 const TextString = "TEXT";
 const Link = "LINK";
-// const PageString = "PAGE";
+const ListString = "List";
 const Note = "NOTE";
 const Image = "IMAGE";
 const DocumentString = "DOCUMENT";
@@ -103,6 +103,9 @@ const Text = ({ children, ...props }: any) => {
   // console.log(props)
   return React.createElement(TextString, props, children);
 };
+const List = ({ children, ...props }: any) => {
+  return React.createElement(ListString, props, children);
+};
 export {
   version,
   DocRenderer,
@@ -110,6 +113,7 @@ export {
   Text,
   Link,
   Section,
+  List,
   //   Font,
   Note,
   Image,

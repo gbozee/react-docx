@@ -1,3 +1,0 @@
-describe("Bullet/List", () => {
-  test("", () => {});
-});
