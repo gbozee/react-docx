@@ -1,4 +1,5 @@
 import React from "react";
+// import { Text, List } from "@gbozee/react-docx";
 import { Text, List } from "../src/react-docx";
 import { renderToString } from "./utils";
 

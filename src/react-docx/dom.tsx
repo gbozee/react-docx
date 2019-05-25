@@ -44,7 +44,6 @@ class InternalBlobProvider extends React.PureComponent<
   }
 
   renderDocument() {
-    debugger;
     this.instance.updateContainer(this.props.document);
   }
 
@@ -144,6 +143,7 @@ export {
   List,
   // Page,
   // Font,
+  Table,
   Note,
   Image,
   Canvas,

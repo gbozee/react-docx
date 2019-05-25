@@ -74,6 +74,7 @@ export {
   Image,
   Document,
   Canvas,
+  Table,
   // StyleSheet,
   createInstance,
   document

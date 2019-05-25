@@ -1,4 +1,5 @@
 import React from "react";
+// import { Document } from "@gbozee/react-docx";
 import { Document } from "../src/react-docx";
 import { renderToString } from "./utils";
 

@@ -1,4 +1,5 @@
-import { document } from "../src/react-docx/node";
+import { document } from "@gbozee/react-docx";
+// import { document } from "../src/react-docx/node";
 
 function assertText(text: any, container: any) {
   expect(getTextInstance(container, "children").root[1].root[1]).toContain(

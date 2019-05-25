@@ -8,9 +8,10 @@ import Text from "./Text";
 import LineBreak from "./LineBreak";
 import Document from "./Document";
 import Section from "./Section";
-import List from "./List"
+import List from "./List";
+import Table from "./Table";
 
-import HorizontalLine from "./HorizontalLine"
+import HorizontalLine from "./HorizontalLine";
 // import Canvas from './Canvas';
 // import TextInstance from './TextInstance';
 
@@ -27,10 +28,13 @@ const constructors: { [key: string]: any } = {
   //   NOTE: Note,
   //   IMAGE: Image,
   //   CANVAS: Canvas,
-  DOCUMENT: Document
+  DOCUMENT: Document,
+  TABLE: Table,
+  TABLE_ROW: Table.Row,
+  TABLE_COLUMN: Table.Column,
+  TABLE_CELL: Table.Cell
   //   TEXT_INSTANCE: TextInstance,
 };
-
 
 function createInstance(element: { type: any; props?: any }, root?: any) {
   const { type, props = {} } = element;

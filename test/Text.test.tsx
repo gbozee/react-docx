@@ -1,4 +1,5 @@
 import React from "react";
+// import { Document, Text, Section } from "@gbozee/react-docx";
 import { Document, Text, Section } from "../src/react-docx/node";
 import { assertText, assertContainStyle, assertTextWithBreak, assertTextIn, assertValueForNodeWithStyle, renderToString } from "./utils";
 

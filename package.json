@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "start": "tsdx watch -i src/jsxapp.tsx",
+    "start:raw": "tsdx watch -i src/application.ts",
     "build": "tsdx build",
     "prepare": "npm run build",
     "test": "tsdx test --watchAll"

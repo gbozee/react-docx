@@ -13,6 +13,10 @@ const Image = "IMAGE";
 const DocumentString = "DOCUMENT";
 const Canvas = "CANVAS";
 const SectionString = "SECTION";
+const TableString = "TABLE";
+const CellString = "TABLE_CELL";
+const RowString = "TABLE_ROW";
+const ColumnString = "TABLE_COLUMN";
 
 const document = (input?: any) => {
   const container = createInstance({ type: "ROOT" });
@@ -106,6 +110,21 @@ const Text = ({ children, ...props }: any) => {
 const List = ({ children, ...props }: any) => {
   return React.createElement(ListString, props, children);
 };
+const Table = ({ children, ...props }: any) => {
+  return React.createElement(TableString, props, children);
+};
+const Row = ({ children, ...props }: any) => {
+  return React.createElement(RowString, props, children);
+};
+const Column = ({ children, ...props }: any) => {
+  return React.createElement(ColumnString, props, children);
+};
+const Cell = ({ children, ...props }: any) => {
+  return React.createElement(CellString, props, children);
+};
+Table.Row = Row;
+Table.Column = Column;
+Table.Cell = Cell;
 export {
   version,
   DocRenderer,
@@ -119,6 +138,7 @@ export {
   Image,
   Document,
   Canvas,
+  Table,
   // StyleSheet,
   createInstance,
   document
